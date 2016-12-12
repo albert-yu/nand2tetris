@@ -8,10 +8,11 @@
  * The most significant carry bit is ignored.
  */
 
-CHIP Add16 {
+CHIP Add16
+{
     IN a[16], b[16];
     OUT out[16];
 
     PARTS:
-   // Put you code here:
+    
 }
