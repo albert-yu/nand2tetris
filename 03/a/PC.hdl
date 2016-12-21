@@ -11,10 +11,36 @@
  * else                    out[t+1] = out[t]
  */
 
-CHIP PC {
+CHIP PC
+{
     IN in[16],load,inc,reset;
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    Register(in=resetout, load=true, out=out, out=regout);
+
+    // check if incremented
+    Inc16(in=regout, out=incremented);
+    Mux16(a=in, b=incremented, sel=inc, out=incout);
+
+    // check if loaded
+    Mux16(a=incout, b=in, sel=load, out=loadout);
+
+    // check if reset
+    Mux16(a=loadout, b=false, sel=reset, out=resetout);
+
+
+
+    // // select among them
+    // ALU(x=in, y[0]=true,
+    //     zx=reset,
+    //     nx=false,
+    //     zy=false,
+    //     ny=false,
+    //     f=inc,
+    //     no=false,
+    //     out=preout
+    //     );
+
+
 }
