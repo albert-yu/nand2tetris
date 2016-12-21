@@ -9,10 +9,12 @@
  *                 else out does not change (out[t+1] = out[t])
  */
 
-CHIP Bit {
+CHIP Bit
+{
     IN in, load;
     OUT out;
 
     PARTS:
-    // Put your code here:
+    Mux(a=A, b=in, sel=load, out=B);
+    DFF(in=B, out=out, out=A);
 }
