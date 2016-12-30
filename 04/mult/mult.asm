@@ -7,3 +7,34 @@
 // (R0, R1, R2 refer to RAM[0], RAM[1], and RAM[2], respectively.)
 
 // Put your code here.
+
+    @i      // i refers to some memory location
+    M=0     // i = 0
+
+    @R2     // R2 is the final product (prod)
+    M=0     // start off with 0
+
+(LOOP)
+    @i
+    D=M     // D = i
+
+    @R1
+    D=D-A   // D = i - R1
+
+    @END
+    D;JGT  // if (i-R1) > 0 goto END
+
+    @R0
+    D=M
+
+    @R2
+    M=D+M   // prod = prod + R0
+
+    @i
+    M=M+1   // increment i
+
+    @LOOP
+    0;JMP   // Goto LOOP
+(END)
+    @END
+    0;JMP
